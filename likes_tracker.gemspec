@@ -18,8 +18,8 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'rails', '>= 3.0.0'
   gem.add_dependency 'redis', '~> 3.0.1'
 
-  s.add_development_dependency 'factory_girl_rails', '~> 3.5.0'
-  s.add_development_dependency 'rspec-rails', '~> 2.10.0'
+  gem.add_development_dependency 'factory_girl_rails', '~> 3.5.0'
+  gem.add_development_dependency 'rspec-rails', '~> 2.10.0'
 
 
 end
