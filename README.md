@@ -23,8 +23,14 @@ Or install it yourself as:
 
 ## Usage
 
-Given you have two models, say User and Post, and you want to track the *likes* a given Post receives by User(s). Include the LikesTracker
-module and use the methods it offers to setup models as *liker* and *liked*:
+First of all, you need a ```$redis``` in your app, you might achieve this using an initializer:
+
+```
+# config/initializers/redis.rb
+$redis = Redis.new(host: 'localhost', port: '6379', db: '1')
+```
+
+Given you have two models, say User and Post, and you want to track the *likes* a given Post receives by User(s). Include the LikesTracker module and use the methods it offers to setup models as *liker* and *liked*:
 
 ```
 # app/models/post.rb
