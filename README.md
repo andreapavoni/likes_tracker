@@ -1,4 +1,4 @@
-# LikesTracker
+# LikesTracker [![Build Status](https://secure.travis-ci.org/apeacox/likes_tracker.png)](http://travis-ci.org/apeacox/likes_tracker)
 
 A Rails gem to track *likes* between two ```ActiveModel``` compliant models.  A common use case might be that a User likes a Post.
 
