@@ -79,8 +79,6 @@ How to find Posts liked by a User? There's a method for this, of course ;-)
 ```
 It returns a *relation*, such as ```ActiveRecord::Relation```. Even if I haven't tested it yet, this *should* work with other ORMs like Mongoid.
 
-However, this method has an experimental feature: it accepts a block to operate custom queries. I'm still not sure I will expand it to other methods.
-
 ```
 # a silly example to show how it works
 > user.liked_posts {|model, ids| p [model, ids] }
@@ -97,6 +95,14 @@ Last but not least, here there're the remaining methods and examples:
 # you can provide a *limit* parameter, if omitted it defaults to 5
 > Post.most_liked(5)
  => [#<Post id: 1, ...>]
+
+# and it also accepts an  *offset* parameter, if omitted it defaults to 0
+> Post.most_liked(5, 0)
+ => [#<Post id: 1, ...>]
+
+# last but not least, it accepts a block, like you've already seen in above examples
+> Post.most_liked(5, 0) {|model, ids| p [model, ids] }
+ => [Post(id: integer, ...), ["1"]]
 
 > post.likes_users_count
  => 1

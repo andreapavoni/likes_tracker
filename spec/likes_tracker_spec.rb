@@ -78,7 +78,6 @@ describe LikesTracker do
 
         klass.should == Post
         id_list.should == [post.id.to_s]
-
       end
 
     end # liked_posts
@@ -118,12 +117,27 @@ describe LikesTracker do
         Post.most_liked(5).should be_a(ActiveRecord::Relation)
       end
 
-      it "return most liked posts" do
+      it "accepts a limit parameter" do
         Post.most_liked(5).should == [post, post2]
+      end
+
+      it "accepts an offset parameter" do
+        Post.most_liked(5, 1).should == [post2]
       end
 
       it "defaults limit to 5" do
         Post.most_liked.should == [post, post2]
+      end
+
+      it "defaults offset to 0" do
+        Post.most_liked.should == [post, post2]
+      end
+
+      it "accepts a block to make custom queries" do
+        klass, id_list = Post.most_liked {|model, ids| [model, ids]}
+
+        klass.should == Post
+        id_list.should == [post.id.to_s, post2.id.to_s]
       end
 
     end # .most_liked
