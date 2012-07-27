@@ -90,23 +90,29 @@ describe LikesTracker do
     end # likes_users_count
 
     describe ".most_liked" do
-      it "returns an ActiveRecord::Relation" do
-        Post.most_liked(5).should be_a(ActiveRecord::Relation)
-      end
+      let(:user2) { FactoryGirl.create :user }
+      let(:post2) { FactoryGirl.create :post }
 
-      it "return most liked posts" do
+      before(:each) do
         user.like_post! post
-
-        user2 = FactoryGirl.create :user
-        post2 = FactoryGirl.create :post
 
         user.like_post! post2
         user2.like_post! post
 
         post.likes_users_count.should == 2
         post2.likes_users_count.should == 1
+      end
 
+      it "returns an ActiveRecord::Relation" do
+        Post.most_liked(5).should be_a(ActiveRecord::Relation)
+      end
+
+      it "return most liked posts" do
         Post.most_liked(5).should == [post, post2]
+      end
+
+      it "defaults limit to 5" do
+        Post.most_liked.should == [post, post2]
       end
 
     end # .most_liked

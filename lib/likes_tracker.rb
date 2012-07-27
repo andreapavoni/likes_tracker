@@ -65,7 +65,7 @@ module LikesTracker
       end
 
       # find the first <limit> <object>s with more likes
-      define_singleton_method :most_liked do |limit|
+      define_singleton_method :most_liked do |limit=5|
         limit -= 1 if (limit > 0)
         most_liked_key = "#{self.name.downcase.pluralize}:like_scores"
         most_liked_ids = $redis.zrevrange(most_liked_key, 0, limit)

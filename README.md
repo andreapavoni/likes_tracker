@@ -94,7 +94,7 @@ However, this method has an experimental feature: it accepts a block to operate 
 Last but not least, here there're the remaining methods and examples:
 
 ```
-# you should provide a *limit* parameter
+# you can provide a *limit* parameter, if omitted it defaults to 5
 > Post.most_liked(5)
  => [#<Post id: 1, ...>]
 
