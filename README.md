@@ -69,8 +69,7 @@ Now your models will have some methods to manage the likes a model *gives* to an
  => true
 ```
 
-As you can see, the methods' names reflect model names (and they'll be properly namespaced on Redis). This means, that the same models can like
-several others, for example User might like another model called Photo or Comment.
+As you can see, the methods' names reflect model names (and they'll be properly namespaced on Redis). This means, that the same models can like several others, for example User might like another model called Photo or Comment, so you'll have methods like ```#like_comment!``` or ```#likes_photo?``` and so on.
 
 How to find Posts liked by a User? There's a method for this, of course ;-)
 
@@ -78,8 +77,7 @@ How to find Posts liked by a User? There's a method for this, of course ;-)
 > user.liked_posts
  => [#<Post id: 1, ...>]
 ```
-It returns a *relation*, such as ```ActiveRecord::Relation```. Even if I
-haven't tested it yet, this *should* work with other ORMs like Mongoid.
+It returns a *relation*, such as ```ActiveRecord::Relation```. Even if I haven't tested it yet, this *should* work with other ORMs like Mongoid.
 
 However, this method has an experimental feature: it accepts a block to operate custom queries. I'm still not sure I will expand it to other methods.
 
