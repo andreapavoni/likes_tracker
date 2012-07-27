@@ -61,13 +61,24 @@ describe LikesTracker do
     end # likes_post?
 
     describe "#liked_posts" do
+      before(:each) do
+        user.like_post! post
+      end
+
       it "returns an ActiveRecord::Relation" do
         user.liked_posts.should be_a(ActiveRecord::Relation)
       end
 
       it "return posts liked by user" do
-        user.like_post! post
         user.liked_posts.should include(post)
+      end
+
+      it "accepts a block to make custom queries" do
+        klass, id_list = user.liked_posts {|model, ids| [model, ids]}
+
+        klass.should == Post
+        id_list.should == [post.id.to_s]
+
       end
 
     end # liked_posts
