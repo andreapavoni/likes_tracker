@@ -74,7 +74,7 @@ module LikesTracker
           blk = ->(klass, params) { block.call(klass, params) }
           blk.call(self, most_liked_ids)
         else
-          self.where(id: most_liked_ids)
+          self.where(id: most_liked_ids).order(most_liked_ids.map {|id| "id = #{id} DESC"}.join(','))
         end
       end
 
